@@ -41,7 +41,7 @@ All done! Now, start your server by running python manage.py runserver. For best
 
 # Endpoint
 
-Live Endpoint:
+Live Endpoint: https://posta-k.herokuapp.com/
 
 ### Question 1
 Endpoint: /darts/
