@@ -50,7 +50,7 @@ Endpoint: /darts/
 |-------------|-------------|-------|----------------|----------------------|---------------------|
 | Play darts  | GET         | /play | ?x=0&y=10       | {"score": 0}       | {"score":1}          |
 
-![Image description](link-to-image)
+![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-17%20at%2002.10.56.png)
 
 ### Question 2 
 Endpoint: /loot_bank/
