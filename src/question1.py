@@ -23,18 +23,19 @@ darts = Blueprint('darts', __name__,url_prefix='/darts')
 @darts.route('/', methods=['GET'])
 def darts_game():
     score = 0
-    if not request:
-        abort(400)
-    x=request.args.get('x')
-    y=request.args.get('y')
-    radius = sqrt(pow(int(x),2) + pow(int(y),2))
-    if radius >5 <=10:
-        score = 1
-    elif radius >1 <=5:
-        score = 5
-    elif radius >0 <= 1:
-        score = 10
-    else:
+    try:
+        x=request.args.get('x')
+        y=request.args.get('y')
+        radius = sqrt(pow(int(x),2) + pow(int(y),2))
+        if radius >5 <=10:
+            score = 1
+        elif radius >1 <=5:
+            score = 5
+        elif radius >0 <= 1:
+            score = 10
+        else:
+            score
+    except:
         score
 
     return jsonify({"score": score})

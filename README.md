@@ -46,9 +46,9 @@ Live Endpoint: https://posta-k.herokuapp.com/
 ### Question 1
 Endpoint: /darts/
 
-| Description | HTTP Method | URL   | Payload Format | Response w/o Payload | Response w/ Payload |
+| Description | HTTP Method | URL   | Params | Response w/o Payload | Response w/ Payload |
 |-------------|-------------|-------|----------------|----------------------|---------------------|
-| Play darts  | GET         | /play | 0,10           |                      | 1                   |
+| Play darts  | GET         | /play | ?x=0&y=10       | {"score": 0}       | {"score":1}          |
 
 ### Question 2 
 Endpoint: /loot_bank/
