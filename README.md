@@ -50,6 +50,8 @@ Endpoint: /darts/
 |-------------|-------------|-------|----------------|----------------------|---------------------|
 | Play darts  | GET         | /play | ?x=0&y=10       | {"score": 0}       | {"score":1}          |
 
+![Image description](link-to-image)
+
 ### Question 2 
 Endpoint: /loot_bank/
 
