@@ -48,7 +48,7 @@ Endpoint: /darts/
 
 | Description | HTTP Method | URL   | Params | Response w/o Payload | Response w/ Payload |
 |-------------|-------------|-------|----------------|----------------------|---------------------|
-| Play darts  | GET         | /play | ?x=0&y=10       | {"score": 0}       | {"score":1}          |
+| Play darts  | GET         | / | ?x=0&y=10       | {"score": 0}       | {"score":1}          |
 
 ![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-17%20at%2002.10.56.png)
 
@@ -57,13 +57,20 @@ Endpoint: /loot_bank/
 
 | Description | HTTP Method | URL   | Payload Format                                                                                                                                         | Response w/o Payload | Response w/ Payload                                                                         |
 |-------------|-------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|---------------------------------------------------------------------------------------------|
-| Loot Bank   | GET         | /loot | { "Knapsack:100, "items":[{ "weight": 5, "value": 10 },  { "weight": 4, "value": 40 },  { "weight": 6, "value": 30 },  { "weight": 4, "value": 50 }] } | {"knapsack":}        | {"Knapsack:100, "items":[{   { "weight": 4, "value": 40 },   { "weight": 4, "value": 50 }]} |
+| Loot Bank   | GET         | /| { "Knapsack:100, "items":[{ "weight": 5, "value": 10 },  { "weight": 4, "value": 40 },  { "weight": 6, "value": 30 },  { "weight": 4, "value": 50 }] } | {"knapsack":}        | {"Knapsack:100, "items":[{   { "weight": 4, "value": 40 },   { "weight": 4, "value": 50 }]} |
 
+![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-17%20at%2002.10.56.png)
 ### Question 3
 Endpoint: /ice_fire/
 
+| Description                      | HTTP Method | URL             | Payload Format | Response w/o Payload | Response w/ Payload |
+|----------------------------------|-------------|-----------------|----------------|----------------------|---------------------|
+| display character/books/house    | GET         | /characters     |                |                      |                     |
+| view details of selected element | GET         | /character/<id> |                |                      |                     |
 
 
+
+![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-17%20at%2002.10.56.png)
 ### Question 4
 Endpoint: /jo_owes/
 
@@ -73,4 +80,6 @@ Endpoint: /jo_owes/
 | Create User              | POST        | /add   | {"user":}                             | N/A                  | {User object for new user}      |
 | Create IOU               | POST        | /iou   | {"lender":,"borrower":,"amount":5.25} | N/A                  | {"users": and(sorted by name)>} |
 | Delete User              | DELETE      | /users | {"user":{"id":3}}                     | N/A                  | {"user deleted succesfully"     |
+
+![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-17%20at%2002.10.56.png)
 
