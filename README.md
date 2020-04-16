@@ -58,7 +58,7 @@ Endpoint: /loot_bank/
 | Loot Bank   | GET         | /loot | { "Knapsack:100, "items":[{ "weight": 5, "value": 10 },  { "weight": 4, "value": 40 },  { "weight": 6, "value": 30 },  { "weight": 4, "value": 50 }] } | {"knapsack":}        | {"Knapsack:100, "items":[{   { "weight": 4, "value": 40 },   { "weight": 4, "value": 50 }]} |
 
 ### Question 3
-Endpoint: /star_wars/
+Endpoint: /ice_fire/
 
 
 
