@@ -7,9 +7,6 @@ from src.question2 import loot_bank
 from src.question3 import ice_fire
 from src.question4 import jo_owes
 
-
-app.config.from_object(os.environ['APP_SETTINGS'])
-
 app.register_blueprint(darts)
 app.register_blueprint(loot_bank)
 app.register_blueprint(ice_fire)

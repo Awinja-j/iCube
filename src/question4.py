@@ -1,6 +1,5 @@
 from manage import db
 from flask import Blueprint, request
-from sqlalchemy.orm import relationship
 
 jo_owes = Blueprint('jo_owes', __name__, url_prefix='/jo_owes')
 
@@ -9,8 +8,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(), nullable=False)
-    iou = db.relationship('IOU', back_populates='User')
-
+    iou = db.relationship('IOU', backref='user', lazy=True)
 
     def __init__(self, full_name):
         self.full_name = full_name
@@ -39,10 +37,12 @@ class IOU(db.Model):
     __tablename__ = 'iou'
 
     id = db.Column(db.Integer, primary_key=True)
-    lender_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
-    borrower_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
-    amount = db.Column(db.Integer)
-    user = db.relationship('User', back_populates='IOU')
+    lender_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    borrower_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+
+    lender = db.relationship("User", back_populates='User', foreign_keys=[id])
+    borrower = db.relationship("User", back_populates='User', foreign_keys=[id])
 
     def __init__(self,lender_id, borrower_id, amount):
         self.lender_id = lender_id
