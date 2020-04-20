@@ -10,4 +10,4 @@ def loot():
     for x in loot['items']:
         weight = x['weight']
         value = x['value']
-    return('loot_bank')
+    return(weight, value)
