@@ -1,4 +1,5 @@
 import os
+from flask import render_template
 from manage import app, db
 from src.question4 import User, IOU
 
@@ -20,7 +21,7 @@ with app.app_context():
 
 @app.route('/')
 def hello():
-    return "Hello World!"
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

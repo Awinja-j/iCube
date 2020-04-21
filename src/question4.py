@@ -8,7 +8,6 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(), nullable=False)
-    iou = db.relationship('IOU', backref='user', lazy=True)
 
     def __init__(self, full_name):
         self.full_name = full_name
@@ -21,17 +20,6 @@ class User(db.Model):
             'id': self.id, 
             'full_name': self.full_name,
         }
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-
-    @staticmethod
-    def get_all():
-        return User.query.all()
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
 
 class IOU(db.Model):
     __tablename__ = 'iou'
@@ -41,8 +29,8 @@ class IOU(db.Model):
     borrower_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
 
-    lender = db.relationship("User", back_populates='User', foreign_keys=[id])
-    borrower = db.relationship("User", back_populates='User', foreign_keys=[id])
+    # lender = db.relationship("User", back_populates='User', foreign_keys=[id])
+    # borrower = db.relationship("User", back_populates='User', foreign_keys=[id])
 
     def __init__(self,lender_id, borrower_id, amount):
         self.lender_id = lender_id
@@ -59,24 +47,13 @@ class IOU(db.Model):
             'borrower': self.borrower_id,
             'amount':self.amount
         }
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
-
-    @staticmethod
-    def get_all():
-        return IOU.query.all()
-
-    def delete(self):
-        db.session.delete(self)
-        db.session.commit()
 
 #-------------------------------------------------------------------------------------------------------
 
 @jo_owes.route('/users', methods=['GET'])
 def list_user_information():
     try:
-        users = User.get_all()
+        users = User.query.all()
         return users
     except Exception as e:
 	    return(str(e))
@@ -87,8 +64,9 @@ def create_user():
         req = request.get_json()
         user_name = req['user_name']
         user = User(full_name = user_name)
-        User.save()
-        return ({},'created succesfully').format(user)
+        db.session.add(user)
+        db.session.commit()
+        return ('user created succesfully')
     except Exception as e:
 	    return(str(e))
 
@@ -100,12 +78,22 @@ def create_iou():
         lender = req['lender']
         borrower = req['borrower']
         amount = req['amount']
+
+        check_lender = User.query.filter_by(id=lender).first()
+        check_borrower = User.query.filter_by(id=borrower).first()
+        
+        if not check_lender:
+            return 'This lender does not exist'
+        if not check_borrower:
+            return 'This borrower does not exist'
+
         iou = IOU(
             lender_id = lender,
             borrower_id = borrower,
             amount = amount
         )
-        IOU.save()
+        db.session.add(iou)
+        db.session.commit()
         return('Record saved succesfully')
     except Exception as e:
 	    return(str(e))
@@ -115,8 +103,12 @@ def delete():
     try:
         req = request.get_json()
         user_id = req['user_id']
-        deleted = User(id=id)
-        User.delete()
-        return 'delete succesfull'
+        deleted = User.query.filter_by(id=user_id).first()
+        if not deleted:
+            return 'This user was not found'
+        else:
+            db.session.delete(User.query.get(user_id))
+            db.session.commit()
+            return 'delete succesfull'
     except Exception as e:
 	    return(str(e))
