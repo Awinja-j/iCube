@@ -7,7 +7,8 @@ def loot():
     limit = 0
     loot = request.get_json()
     knapsack = loot['knapsack']
-    for x in loot['items']:
-        weight = x['weight']
-        value = x['value']
-    return(weight, value)
+    items = loot['items'][0:]
+    value =[element['value'] for element in items]
+    highest_value = max(value)
+    
+    print(highest_value)

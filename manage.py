@@ -5,7 +5,7 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 
-app = Flask(__name__, template_folder='../src/templates')
+app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)

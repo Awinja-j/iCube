@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>An API of Ice And Fire</title>
+        <p>All the data from the universe of Ice And Fire you've ever wanted!</p>
+     </head>
+     <body>
+        <table border = "1" >
+            <caption>Characters</caption>
+            <tr>
+               <th>URL</th>
+               <th>Aliases</th>
+               <th>Books</th>
+            </tr>
+            {% for character in characters %}
+            <tr >
+                <td>
+                    <a href="{{ character.url }}" >{{ character.url }} </a>
+                </td>
+                <td>
+                    {{ character.aliases }}
+                </td>
+                <td>
+                    {{ character.books }}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+        <table border = "1">
+            <caption>Books</caption>
+            <tr>
+               <th>URL</th>
+               <th>Name</th>
+               <th>Authors</th>
+            </tr>
+            {% for book in books %}
+            <tr>
+                <td>
+                    <a href="{{ book.url }}" >{{ book.url }} </a>
+                </td>
+                <td>
+                    {{ book.name }}
+                </td>
+                <td>
+                    {{ book.authors }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <table border = "1">
+            <caption>Houses</caption>
+            <tr>
+                <th>URL</th>
+               <th>Name</th>
+               <th>Region</th>
+               <th>Coat Of Arms</th>
+               
+            </tr>
+            {% for house in houses %}
+            <tr>
+                <td>
+                    <a href="{{ house.url }}" >{{ house.url }} </a>
+                </td>
+                <td>
+                    {{ house.name }}
+                </td>
+                <td>
+                    {{ house.region }}
+                </td>
+                <td>
+                    {{ house.coatOfArms }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+     </body>
+</html>
