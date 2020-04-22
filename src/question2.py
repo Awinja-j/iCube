@@ -18,7 +18,7 @@ def loot_():
               _loot['items'].remove(x)
               loot['items']= x
               loot['knapsack']= x['weight']
-              items = l['items'][0:]
+              items = _loot['items'][0:]
       else:
         weight = [element['weight'] for element in items]
         for i in weight:
@@ -32,7 +32,7 @@ def loot_():
           else:
             value =[element['value'] for element in items]
             highest_value = max(value)
-            for x in l['items']:
+            for x in _loot['items']:
               if x['value'] == highest_value:
                   _loot['items'].remove(x)
                   loot['items']=x

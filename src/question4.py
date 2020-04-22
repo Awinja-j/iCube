@@ -1,5 +1,5 @@
 from manage import db
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 
 jo_owes = Blueprint('jo_owes', __name__, url_prefix='/jo_owes')
 
@@ -54,7 +54,36 @@ class IOU(db.Model):
 def list_user_information():
     try:
         users = User.query.all()
-        return users
+        person = []
+
+        for user in users:
+            name = user.full_name
+            try:
+                lended  = IOU.query.filter_by(lender_id=user.id).all()
+                borrowed = IOU.query.filter_by(borrower_id=user.id).all()
+                owe =[]
+                owed =[]
+                balance_owe = []
+                balance_owed = []
+
+                for x in lended:
+                    owe.append(x.borrower_id)
+                    balance_owe.append(x.amount)
+                for y in borrowed:
+                    owed.append(y.lender_id)
+                    balance_owed.append(y.amount)
+                
+                balance = sum(balance_owed) - sum(balance_owe)
+            except Exception as e:
+	            return(str(e))        
+            data = {
+                'name': name ,
+                'owes':owe,
+                'owed_by':owed,
+                'balance': balance
+            }
+            person.append(data)
+        return jsonify({'user':person})
     except Exception as e:
 	    return(str(e))
 
@@ -66,7 +95,7 @@ def create_user():
         user = User(full_name = user_name)
         db.session.add(user)
         db.session.commit()
-        return ('user created succesfully')
+        return jsonify(message='user created succesfully')
     except Exception as e:
 	    return(str(e))
 
@@ -94,7 +123,7 @@ def create_iou():
         )
         db.session.add(iou)
         db.session.commit()
-        return('Record saved succesfully')
+        return jsonify(message='Record saved succesfully')
     except Exception as e:
 	    return(str(e))
 
@@ -105,10 +134,10 @@ def delete():
         user_id = req['user_id']
         deleted = User.query.filter_by(id=user_id).first()
         if not deleted:
-            return 'This user was not found'
+            return jsonify(message='This user was not found')
         else:
             db.session.delete(User.query.get(user_id))
             db.session.commit()
-            return 'delete succesfull'
+            return jsonify(message='delete succesfull')
     except Exception as e:
 	    return(str(e))
