@@ -3,7 +3,7 @@
 ### Requirements
 
 - python 3.5/python 3.6. 
-- sqlite3 database
+- [Postgres](https://www.codementor.io/@engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb) | [Postico](http://docs.dallinger.io/en/latest/postico_and_postgres.html)
 
 ### Installation
 
@@ -29,15 +29,9 @@ Install all app requirements
 
 `$ pip install -r requirements.txt`
 
-Create the database and run migrations
+All done! Now, start your server by running `python app.py`. 
 
-`$ python manage.py db init`
-
-`$ python manage.py db migrate`
-
-`$ python manage.py db upgrade`
-
-All done! Now, start your server by running python manage.py runserver. For best experience, use a GUI platform like postman to make requests to the api.
+For best experience, use a GUI platform like postman to make requests to the api.
 
 # Endpoint
 
@@ -65,8 +59,7 @@ Endpoint: /ice_fire/
 
 | Description                      | HTTP Method | URL             | Payload Format | Response w/o Payload | Response w/ Payload |
 |----------------------------------|-------------|-----------------|----------------|----------------------|---------------------|
-| display character/books/house    | GET         | /characters     |                |                      |                     |
-| view details of selected element | GET         | /character/<id> |                |                      |                     |
+| display character/books/house    | GET         | /    |                |                      |                     |
 
 
 
