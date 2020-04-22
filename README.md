@@ -54,6 +54,8 @@ Endpoint: /loot_bank/
 | Loot Bank   | GET         | /| { "Knapsack:100, "items":[{ "weight": 5, "value": 10 },  { "weight": 4, "value": 40 },  { "weight": 6, "value": 30 },  { "weight": 4, "value": 50 }] } | {"knapsack":}        | {"Knapsack:100, "items":[{   { "weight": 4, "value": 40 },   { "weight": 4, "value": 50 }]} |
 
 ![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-22%20at%2007.00.55.png)
+
+
 ### Question 3
 Endpoint: /ice_fire/
 
@@ -62,8 +64,8 @@ Endpoint: /ice_fire/
 | display character/books/house    | GET         | /    |                |                      |                     |
 
 
+![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-22%20at%2007.06.19.png)
 
-![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-22%20at%2006.57.43.png)
 ### Question 4
 Endpoint: /jo_owes/
 
@@ -74,5 +76,5 @@ Endpoint: /jo_owes/
 | Create IOU               | POST        | /iou   | {"lender":,"borrower":,"amount":5.25} | N/A                  | {"users": and(sorted by name)>} |
 | Delete User              | DELETE      | /users | {"user":{"id":3}}                     | N/A                  | {"user deleted succesfully"     |
 
-![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-17%20at%2002.10.56.png)
+![Image description](https://github.com/Awinja-j/iCube/blob/master/images/Screenshot%202020-04-22%20at%2006.57.43.png)
 
